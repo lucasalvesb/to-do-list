@@ -2,6 +2,7 @@ import { useState } from 'react'
 import './App.css'
 import AddTask from './components/AddTask'
 import Header from './components/Header'
+import Tasks from './components/Tasks'
 
 function App() {
 
@@ -10,6 +11,7 @@ function App() {
     <div className="App">
       <Header />
       <AddTask />
+      <Tasks />
     </div>
   )
 }
