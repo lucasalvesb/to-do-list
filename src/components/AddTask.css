@@ -1,0 +1,65 @@
+.add-task-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+
+  position: absolute;
+  width: 46rem;
+  height: 3.375rem;
+  left: calc(50% - 736px / 2);
+  top: 173px;
+}
+
+.task-area {
+  box-sizing: border-box;
+  /* Auto layout */
+
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 16px;
+  gap: 8px;
+
+  width: 638px;
+  height: 54px;
+
+  /* Gray 500 */
+
+  background: #262626;
+  /* Gray 700 */
+
+  border: 1px solid #0d0d0d;
+  border-radius: 8px;
+
+  /* Inside auto layout */
+
+  flex: none;
+  order: 0;
+  flex-grow: 1;
+}
+
+.task-area::placeholder {
+  font-family: 'Inter', sans-serif;
+  font-weight: 400;
+  text-align: left;
+}
+
+.btn {
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: var(--gray-100);
+  font-size: 0.875rem;
+  background-color: var(--blue-dark);
+  padding: 1rem;
+  border-radius: 8px;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  line-height: 140%;
+}
+
+.plus {
+  padding-left: 0.5rem;
+}

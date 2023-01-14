@@ -4,8 +4,9 @@ import rocketLogo from '../assets/rocket.svg'
 export default function Header() {
   return (
     <header className="header">
-      <div className="container">
+      <div className="header-container">
         <img
+        className="rocket"
           src={rocketLogo}
           alt="logo do míssil"
         />

@@ -1,18 +1,20 @@
-.container {
+.header-container {
   background-color: var(--gray-700);
+  border: 1px solid #000000;
   height: 12.5rem;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-img {
+.rocket {
   width: 1.375rem;
   height: 2.25rem;
 }
 
 .todo {
   font-family: 'Inter', sans-serif;
+  font-weight: 900;
   font-size: 2.5rem;
   padding-left: 0.75rem;
   padding-bottom: 0.2rem;
