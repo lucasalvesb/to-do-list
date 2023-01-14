@@ -1,0 +1,27 @@
+.container {
+  background-color: var(--gray-700);
+  height: 12.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+img {
+  width: 1.375rem;
+  height: 2.25rem;
+}
+
+.todo {
+  font-family: 'Inter', sans-serif;
+  font-size: 2.5rem;
+  padding-left: 0.75rem;
+  padding-bottom: 0.2rem;
+}
+
+.to {
+  color: var(--blue);
+}
+
+.do {
+  color: var(--purple-dark);
+}
