@@ -37,9 +37,6 @@
   width: 139px;
   height: 19px;
 
-  flex: none;
-  order: 0;
-  flex-grow: 0;
   color: var(--blue);
   font-family: 'Inter', sans-serif;
   font-weight: 700;
@@ -76,6 +73,8 @@
   width: 25px;
   height: 19px;
 }
+
+
 
 .strong-paragraph {
   font-family: 'Inter';

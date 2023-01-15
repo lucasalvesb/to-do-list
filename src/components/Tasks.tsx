@@ -9,8 +9,10 @@ import { FormEvent, ChangeEvent, useState } from 'react'
 
 
 export default function Tasks() {
-  const [tasks, setTasks] = useState(['faça isto isto e aquilo outro!'])
+  const [tasks, setTasks] = useState<string[]>([])
   const [newTask, setNewTask] = useState('')
+
+  
 
   function handleDeleteTask(taskToDelete: string) {
     const tasksWithoutDeletedOne = tasks.filter((task) => {
@@ -24,7 +26,6 @@ export default function Tasks() {
     event.preventDefault()
 
     setTasks([...tasks, newTask])
-    console.log(tasks)
 
     setNewTask('')
   }
@@ -70,40 +71,48 @@ export default function Tasks() {
             Concluídas <span className="counter-concluded">0</span>
           </p>
         </header>
+        {tasks.length === 0 && (
+          <>
+            <img
+              src={clipboard}
+              className="clipboard"
+            />
+            <p className="strong-paragraph">
+              Você ainda não tem tarefas cadastradas
+            </p>
+            <p className="weak-paragraph">
+              Crie tarefas e organize seus itens a fazer
+            </p>
+          </>
+        )}
         <main className="tasks-list-main">
           <ul>
-            {tasks.map((task) => {
-              return (
-                <div className="tasks-list-box">
-                  <div className="text-box">
-                    <img
-                      src={check}
-                      className="check-img"
-                    />
-                    <li>{task}</li>
-                  </div>
-                  <div className="container-trash">
-                    <button
-                      /*                     onMouseDown={handleDeleteTask} */
-                      title="Deletar comentário"
-                    >
+            {tasks &&
+              tasks.map((task) => {
+                return (
+                  <div className="tasks-list-box">
+                    <div className="text-box">
                       <img
-                        src={trash}
-                        className="trash-img"
+                        src={check}
+                        className="check-img"
                       />
-                    </button>
+                      <li>{task}</li>
+                    </div>
+                    <div className="container-trash">
+                      <button
+                        /*                     onMouseDown={handleDeleteTask} */
+                        title="Deletar comentário"
+                      >
+                        <img
+                          src={trash}
+                          className="trash-img"
+                        />
+                      </button>
+                    </div>
                   </div>
-                </div>
-              )
-            })}
+                )
+              })}
           </ul>
-          <img src={clipboard} />
-          <p className="strong-paragraph">
-            Você ainda não tem tarefas cadastradas
-          </p>
-          <p className="weak-paragraph">
-            Crie tarefas e organize seus itens a fazer
-          </p>
         </main>
       </div>
     </>
