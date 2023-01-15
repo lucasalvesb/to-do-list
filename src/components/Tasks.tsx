@@ -29,7 +29,7 @@ export default function Tasks() {
     setNewTask('')
   }
 
-  function handleNewTaskChange(event: ChangeEvent<HTMLTextAreaElement>) {
+  function handleNewTaskChange(event: ChangeEvent<HTMLInputElement>) {
     event.target.setCustomValidity('')
     setNewTask(event.target.value)
   }
@@ -42,12 +42,13 @@ export default function Tasks() {
     <>
       <div className="add-task-container">
         <form onSubmit={handleCreateNewTask}>
-          <textarea
+          <input
             placeholder="Adicione uma nova tarefa"
             className="task-area"
             onChange={handleNewTaskChange}
             value={newTask}
-          ></textarea>
+            maxLength={150}
+          ></input>
           <button
             className="btn"
             type="submit"
@@ -74,11 +75,13 @@ export default function Tasks() {
             {tasks.map((task) => {
               return (
                 <div className="tasks-list-box">
-                  <img
-                    src={check}
-                    className="check-img"
-                  />
-                  <li>{task}</li>
+                  <div className="text-box">
+                    <img
+                      src={check}
+                      className="check-img"
+                    />
+                    <li>{task}</li>
+                  </div>
                   <div className="container-trash">
                     <button
                       /*                     onMouseDown={handleDeleteTask} */
