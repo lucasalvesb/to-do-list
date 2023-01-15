@@ -6,9 +6,11 @@ import plus from '../assets/plus.svg'
 import { Trash } from 'phosphor-react'
 import { FormEvent, ChangeEvent, useState } from 'react'
 
+
+
 export default function Tasks() {
-  const [newTask, setNewTask] = useState('')
   const [tasks, setTasks] = useState(['faça isto isto e aquilo outro!'])
+  const [newTask, setNewTask] = useState('')
 
   function handleDeleteTask(taskToDelete: string) {
     const tasksWithoutDeletedOne = tasks.filter((task) => {
@@ -23,12 +25,13 @@ export default function Tasks() {
 
     setTasks([...tasks, newTask])
     console.log(tasks)
+
+    setNewTask('')
   }
 
-  function handleNewTaskChange(event: ChangeEvent<HTMLInputElement>) {
+  function handleNewTaskChange(event: ChangeEvent<HTMLTextAreaElement>) {
     event.target.setCustomValidity('')
     setNewTask(event.target.value)
-
   }
 
   function isDisabled() {
@@ -39,12 +42,12 @@ export default function Tasks() {
     <>
       <div className="add-task-container">
         <form onSubmit={handleCreateNewTask}>
-          <input
+          <textarea
             placeholder="Adicione uma nova tarefa"
             className="task-area"
             onChange={handleNewTaskChange}
             value={newTask}
-          ></input>
+          ></textarea>
           <button
             className="btn"
             type="submit"
@@ -75,19 +78,18 @@ export default function Tasks() {
                     src={check}
                     className="check-img"
                   />
-                  <li>
-                    exemplo exemplo exemplo exemplo exemplo exemplo
-                    exemploexemplo exemplo exemplo aaaaaaaaaaaaaaaaaaaa
-                  </li>
-                  <button
-                    /*                     onMouseDown={handleDeleteTask} */
-                    title="Deletar comentário"
-                  >
-                    <img
-                      src={trash}
-                      className="trash-img"
-                    />
-                  </button>
+                  <li>{task}</li>
+                  <div className="container-trash">
+                    <button
+                      /*                     onMouseDown={handleDeleteTask} */
+                      title="Deletar comentário"
+                    >
+                      <img
+                        src={trash}
+                        className="trash-img"
+                      />
+                    </button>
+                  </div>
                 </div>
               )
             })}
