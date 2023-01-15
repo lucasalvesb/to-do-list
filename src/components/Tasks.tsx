@@ -4,23 +4,38 @@ import check from '../assets/check.svg'
 import trash from '../assets/trash.svg'
 import plus from '../assets/plus.svg'
 import { Trash } from 'phosphor-react'
-import { FormEvent, ChangeEvent, useState } from 'react'
+import {
+  FormEvent,
+  ChangeEvent,
+  InvalidEvent,
+  useState,
+  MouseEventHandler,
+} from 'react'
 
-
+interface TaskProps {
+  onDeleteTask: (task: string) => void
+}
 
 export default function Tasks() {
   const [tasks, setTasks] = useState<string[]>([])
   const [newTask, setNewTask] = useState('')
 
-  
+  //FALTA O HANDLE DELETE
+  //FALTA O CHECKLIST MARCAOD DE ROXINHO SE A PESSOA CLICAR NO ÍCONE DE FEITO
+  //FALTA O TEXTO RISCADO SE A PESSOA CLICAR NO ÍCONE DE FEITO
+  //FALTA O 'CONCLUÍDAS' MOSTRAR OS VALORES DE ACORDO COM O LENGTH DO TASKS (2 de 5, por ex)
 
-  function handleDeleteTask(taskToDelete: string) {
+
+  function onDeleteTask(taskToDelete: string) {
     const tasksWithoutDeletedOne = tasks.filter((task) => {
       return task != taskToDelete
     })
 
     setTasks(tasksWithoutDeletedOne)
+
   }
+
+
 
   function handleCreateNewTask(event: FormEvent) {
     event.preventDefault()
@@ -28,6 +43,10 @@ export default function Tasks() {
     setTasks([...tasks, newTask])
 
     setNewTask('')
+  }
+
+  function handleNewTaskInvalid(event: InvalidEvent<HTMLInputElement>) {
+    event.target.setCustomValidity('Esse campo é obrigatório!')
   }
 
   function handleNewTaskChange(event: ChangeEvent<HTMLInputElement>) {
@@ -47,8 +66,10 @@ export default function Tasks() {
             placeholder="Adicione uma nova tarefa"
             className="task-area"
             onChange={handleNewTaskChange}
+            onInvalid={handleNewTaskInvalid}
             value={newTask}
-            maxLength={150}
+            maxLength={140}
+            required
           ></input>
           <button
             className="btn"
@@ -100,7 +121,7 @@ export default function Tasks() {
                     </div>
                     <div className="container-trash">
                       <button
-                        /*                     onMouseDown={handleDeleteTask} */
+                        onMouseDown={() => onDeleteTask(task)}
                         title="Deletar comentário"
                       >
                         <img
