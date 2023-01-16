@@ -3,6 +3,7 @@ import clipboard from '../assets/Clipboard.svg'
 import check from '../assets/check.svg'
 import trash from '../assets/trash.svg'
 import plus from '../assets/plus.svg'
+import checked from '../assets/checked.svg'
 import { Trash } from 'phosphor-react'
 import {
   FormEvent,
@@ -12,30 +13,25 @@ import {
   MouseEventHandler,
 } from 'react'
 
-interface TaskProps {
-  onDeleteTask: (task: string) => void
-}
+
 
 export default function Tasks() {
   const [tasks, setTasks] = useState<string[]>([])
   const [newTask, setNewTask] = useState('')
+  const [showFirstButton, setShowFirstButton] = useState(true)
 
-  //FALTA O HANDLE DELETE
   //FALTA O CHECKLIST MARCAOD DE ROXINHO SE A PESSOA CLICAR NO ÍCONE DE FEITO
   //FALTA O TEXTO RISCADO SE A PESSOA CLICAR NO ÍCONE DE FEITO
   //FALTA O 'CONCLUÍDAS' MOSTRAR OS VALORES DE ACORDO COM O LENGTH DO TASKS (2 de 5, por ex)
-
 
   function onDeleteTask(taskToDelete: string) {
     const tasksWithoutDeletedOne = tasks.filter((task) => {
       return task != taskToDelete
     })
 
+
     setTasks(tasksWithoutDeletedOne)
-
   }
-
-
 
   function handleCreateNewTask(event: FormEvent) {
     event.preventDefault()
@@ -52,10 +48,6 @@ export default function Tasks() {
   function handleNewTaskChange(event: ChangeEvent<HTMLInputElement>) {
     event.target.setCustomValidity('')
     setNewTask(event.target.value)
-  }
-
-  function isDisabled() {
-    return true
   }
 
   return (
@@ -113,15 +105,31 @@ export default function Tasks() {
                 return (
                   <div className="tasks-list-box">
                     <div className="text-box">
-                      <img
-                        src={check}
-                        className="check-img"
-                      />
+                      <button
+                        className="btn-checklist"
+                        style={{ display: showFirstButton ? 'block' : 'none'}}
+                        onClick={() => setShowFirstButton(false)}
+                      >
+                        <img
+                          src={check}
+                          className="check-img"
+                        />
+                      </button>
+                      <button
+                        className="btn-checkedlist"
+                        style={{ display: !showFirstButton ? 'block' : 'none' }}
+                        onClick={() => setShowFirstButton(true)}
+                      >
+                        <img
+                          src={checked}
+                          className="checked-img"
+                        />
+                      </button>
                       <li>{task}</li>
                     </div>
                     <div className="container-trash">
                       <button
-                        onMouseDown={() => onDeleteTask(task)}
+                        onClick={() => onDeleteTask(task)}
                         title="Deletar comentário"
                       >
                         <img
